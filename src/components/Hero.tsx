@@ -13,6 +13,7 @@ export default function Hero() {
   const bgRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
+  const noteRef = useRef<HTMLParagraphElement>(null);
 
   useGSAP(
     () => {
@@ -79,6 +80,25 @@ export default function Hero() {
           trigger: section,
           start: "10% top",
           end: "40% top",
+          scrub: 1,
+        },
+      });
+
+      // Note delayed fade in
+      gsap.fromTo(
+        noteRef.current,
+        { opacity: 0 },
+        { opacity: 0.3, duration: 1, delay: 2, ease: "power2.out" }
+      );
+
+      // Note fade on scroll
+      gsap.to(noteRef.current, {
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "10% top",
+          end: "30% top",
           scrub: 1,
         },
       });
@@ -161,6 +181,19 @@ export default function Hero() {
           }}
         >
           The Swindler&apos;s Blueprint
+        </p>
+        <p
+          ref={noteRef}
+          className="mt-4"
+          style={{
+            fontFamily: "var(--font-noto), sans-serif",
+            fontSize: "clamp(0.6rem, 1vw, 0.8rem)",
+            color: "rgba(255, 255, 255, 0.3)",
+            letterSpacing: "0.1em",
+            opacity: 0,
+          }}
+        >
+          ※ジョークですよ。
         </p>
       </div>
 
