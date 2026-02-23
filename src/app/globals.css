@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --green: #00ff41;
+  --red: #ff0040;
+  --blue: #00a8ff;
+  --text: #e0e0e0;
+  --muted: #666666;
+  --classified-red: #ff3333;
+  --font-orbitron: 'Orbitron', monospace;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+  --font-noto: 'Noto Sans JP', sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text);
+  --font-sans: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* ===== Noise Texture Overlay ===== */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ===== Scanline Overlay ===== */
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* ===== Glitch Animation ===== */
+@keyframes glitch {
+  0%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  5% {
+    clip-path: inset(20% 0 60% 0);
+    transform: translate(-5px, 2px);
+  }
+  10% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(5px, -2px);
+  }
+  15% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-3px, 1px);
+  }
+  20% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(3px, -1px);
+  }
+  25%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-alt {
+  0%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  5% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(5px, -2px);
+  }
+  10% {
+    clip-path: inset(30% 0 40% 0);
+    transform: translate(-5px, 2px);
+  }
+  15% {
+    clip-path: inset(70% 0 10% 0);
+    transform: translate(3px, -1px);
+  }
+  20% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translate(-3px, 1px);
+  }
+  25%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: var(--red);
+  animation: glitch 3s infinite linear;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  color: var(--blue);
+  animation: glitch-alt 3s infinite linear;
+  z-index: -1;
+}
+
+/* ===== Heavy Glitch (for red pill end sequence) ===== */
+@keyframes heavy-glitch {
+  0% { clip-path: inset(0 0 100% 0); transform: translate(0); }
+  2% { clip-path: inset(10% 0 60% 0); transform: translate(-10px, 5px) skewX(5deg); }
+  4% { clip-path: inset(50% 0 20% 0); transform: translate(10px, -5px) skewX(-5deg); }
+  6% { clip-path: inset(20% 0 40% 0); transform: translate(-8px, 3px); }
+  8% { clip-path: inset(70% 0 5% 0); transform: translate(8px, -3px) skewX(3deg); }
+  10% { clip-path: inset(5% 0 80% 0); transform: translate(-5px, 2px); }
+  12% { clip-path: inset(40% 0 30% 0); transform: translate(5px, -2px) skewX(-3deg); }
+  14% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  16% { clip-path: inset(60% 0 10% 0); transform: translate(-12px, 6px) skewX(8deg); }
+  18% { clip-path: inset(15% 0 50% 0); transform: translate(12px, -6px) skewX(-8deg); }
+  20% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+}
+
+.heavy-glitch {
+  animation: heavy-glitch 0.5s infinite linear;
+}
+
+/* ===== Boot Sequence Scanline ===== */
+@keyframes boot-scanline {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+
+.boot-scanline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(
+    transparent,
+    rgba(0, 255, 65, 0.1),
+    transparent
+  );
+  animation: boot-scanline 2s linear infinite;
+}
+
+/* ===== Float Animation ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ===== Scroll Indicator ===== */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(10px); opacity: 0.3; }
+}
+
+.scroll-indicator {
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+/* ===== Typewriter Cursor ===== */
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typewriter-cursor::after {
+  content: '█';
+  animation: blink-cursor 1s step-end infinite;
+  color: var(--green);
+}
+
+/* ===== Card Scan Effect ===== */
+@keyframes card-scan {
+  0% { top: -100%; }
+  100% { top: 200%; }
+}
+
+/* ===== Flash Effects ===== */
+@keyframes flash-white {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes flash-blue {
+  0% { opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0; }
+}
+
+@keyframes flash-red {
+  0% { opacity: 0; }
+  50% { opacity: 0.4; }
+  100% { opacity: 0; }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .glitch-text::before,
+  .glitch-text::after {
+    animation: none;
+    display: none;
+  }
+
+  .heavy-glitch {
+    animation: none;
+  }
+
+  .boot-scanline::after {
+    animation: none;
+  }
+
+  .animate-float {
+    animation: none;
+  }
+
+  .scroll-indicator {
+    animation: none;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(0, 255, 65, 0.3);
+  color: #fff;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--green);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.7);
+}
