@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,6 +17,12 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const [booted, setBooted] = useState(false);
   const lenisRef = useRef<Lenis | null>(null);
+
+  // Force scroll to top on page load/reload before Boot Sequence
+  useLayoutEffect(() => {
+    history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const lenis = new Lenis();

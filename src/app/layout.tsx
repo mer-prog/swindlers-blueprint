@@ -30,6 +30,14 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              history.scrollRestoration = 'manual';
+              window.scrollTo(0, 0);
+            `,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
