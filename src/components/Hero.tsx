@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,8 +17,7 @@ export default function Hero({ booted }: HeroProps) {
   const bgRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
-  const noteRef = useRef<HTMLParagraphElement>(null);
-  const captionRef = useRef<HTMLDivElement>(null);
+  const noteRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -45,15 +44,10 @@ export default function Hero({ booted }: HeroProps) {
       // Title chars scatter
       const titleEl = titleRef.current;
       if (titleEl) {
-        const text = titleEl.textContent || "";
-        titleEl.innerHTML = "";
-        const chars = text.split("").map((char) => {
-          const span = document.createElement("span");
-          span.textContent = char;
+        const chars = Array.from(titleEl.querySelectorAll<HTMLSpanElement>("span[data-char]"));
+        chars.forEach((span) => {
           span.style.display = "inline-block";
           span.style.willChange = "transform, opacity";
-          titleEl.appendChild(span);
-          return span;
         });
 
         gsap.to(chars, {
@@ -108,31 +102,9 @@ export default function Hero({ booted }: HeroProps) {
         },
       });
 
-      // Caption fade on scroll
-      gsap.to(captionRef.current, {
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "10% top",
-          end: "30% top",
-          scrub: 1,
-        },
-      });
     },
     { scope: sectionRef }
   );
-
-  // Caption fade in after boot completes
-  useEffect(() => {
-    if (booted && captionRef.current) {
-      gsap.fromTo(
-        captionRef.current,
-        { opacity: 0 },
-        { opacity: 0.4, duration: 0.8, delay: 1, ease: "power2.out" }
-      );
-    }
-  }, [booted]);
 
   return (
     <section
@@ -183,31 +155,12 @@ export default function Hero({ booted }: HeroProps) {
         />
       </div>
 
-      {/* Photo caption */}
-      <div
-        ref={captionRef}
-        className="absolute z-20"
-        style={{
-          top: "1.5rem",
-          right: "2rem",
-          fontFamily: "var(--font-noto), sans-serif",
-          fontSize: "clamp(0.75rem, 1.3vw, 1rem)",
-          color: "rgba(255, 255, 255, 0.7)",
-          background: "rgba(0, 0, 0, 0.5)",
-          padding: "0.4rem 0.8rem",
-          borderRadius: "4px",
-          opacity: 0,
-        }}
-      >
-        📸 詐欺師がよく載せる写真
-      </div>
-
       {/* Center content */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
         <h1
           ref={titleRef}
           className="glitch-text font-bold text-white"
-          data-text="詐欺師の構図"
+          data-text="詐欺師がよく載せる写真"
           style={{
             fontFamily: "var(--font-orbitron), var(--font-noto), sans-serif",
             fontSize: "clamp(3rem, 10vw, 12rem)",
@@ -215,7 +168,17 @@ export default function Hero({ booted }: HeroProps) {
             lineHeight: 1.1,
           }}
         >
-          詐欺師の構図
+          <span data-char style={{ fontSize: "1em" }}>詐</span>
+          <span data-char style={{ fontSize: "1em" }}>欺</span>
+          <span data-char style={{ fontSize: "1em" }}>師</span>
+          <span data-char style={{ fontSize: "0.7em" }}>が</span>
+          <span data-char style={{ fontSize: "0.7em" }}>よ</span>
+          <span data-char style={{ fontSize: "0.7em" }}>く</span>
+          <span data-char style={{ fontSize: "1em" }}>載</span>
+          <span data-char style={{ fontSize: "0.7em" }}>せ</span>
+          <span data-char style={{ fontSize: "0.7em" }}>る</span>
+          <span data-char style={{ fontSize: "1em" }}>写</span>
+          <span data-char style={{ fontSize: "1em" }}>真</span>
         </h1>
         <p
           ref={subRef}
@@ -227,21 +190,37 @@ export default function Hero({ booted }: HeroProps) {
             letterSpacing: "0.3em",
           }}
         >
-          The Swindler&apos;s Blueprint
+          Photos Scammers Love to Post
         </p>
-        <p
+        <div
           ref={noteRef}
           className="mt-4"
           style={{
-            fontFamily: "var(--font-noto), sans-serif",
-            fontSize: "clamp(0.6rem, 1vw, 0.8rem)",
-            color: "rgba(255, 255, 255, 0.5)",
-            letterSpacing: "0.1em",
+            textAlign: "center",
             opacity: 0,
           }}
         >
-          ※ジョークですよ。
-        </p>
+          <p
+            style={{
+              fontFamily: "var(--font-noto), sans-serif",
+              fontSize: "clamp(0.7rem, 1.2vw, 0.95rem)",
+              color: "rgba(255, 255, 255, 0.75)",
+              letterSpacing: "0.1em",
+            }}
+          >
+            ※ジョークだよ。
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-jetbrains), monospace",
+              fontSize: "0.8em",
+              color: "rgba(255, 255, 255, 0.5)",
+              marginTop: "0.3rem",
+            }}
+          >
+            * It&apos;s a joke.
+          </p>
+        </div>
       </div>
 
       {/* Scroll indicator */}
