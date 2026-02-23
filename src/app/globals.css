@@ -143,6 +143,32 @@ body {
   z-index: -1;
 }
 
+/* DOM-based glitch layers (for mixed font-size titles) */
+.glitch-text-container {
+  position: relative;
+}
+
+.glitch-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.glitch-red {
+  color: var(--red);
+  animation: glitch 3s infinite linear;
+  z-index: -1;
+}
+
+.glitch-blue {
+  color: var(--blue);
+  animation: glitch-alt 3s infinite linear;
+  z-index: -1;
+}
+
 /* ===== Heavy Glitch (for red pill end sequence) ===== */
 @keyframes heavy-glitch {
   0% { clip-path: inset(0 0 100% 0); transform: translate(0); }
@@ -244,6 +270,11 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .glitch-text::before,
   .glitch-text::after {
+    animation: none;
+    display: none;
+  }
+
+  .glitch-layer {
     animation: none;
     display: none;
   }
