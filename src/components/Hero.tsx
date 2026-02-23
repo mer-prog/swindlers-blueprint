@@ -159,15 +159,44 @@ export default function Hero({ booted }: HeroProps) {
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
         <h1
           ref={titleRef}
-          className="glitch-text font-bold text-white"
-          data-text="詐欺師がよく載せる写真"
+          className="glitch-text-container font-bold text-white"
           style={{
             fontFamily: "var(--font-orbitron), var(--font-noto), sans-serif",
             fontSize: "clamp(3rem, 10vw, 12rem)",
             textShadow: "0 0 20px rgba(0,255,65,0.5), 0 0 40px rgba(0,255,65,0.3)",
             lineHeight: 1.1,
+            position: "relative",
           }}
         >
+          {/* Red glitch layer */}
+          <span aria-hidden className="glitch-layer glitch-red">
+            <span style={{ fontSize: "1em" }}>詐</span>
+            <span style={{ fontSize: "1em" }}>欺</span>
+            <span style={{ fontSize: "1em" }}>師</span>
+            <span style={{ fontSize: "0.7em" }}>が</span>
+            <span style={{ fontSize: "0.7em" }}>よ</span>
+            <span style={{ fontSize: "0.7em" }}>く</span>
+            <span style={{ fontSize: "1em" }}>載</span>
+            <span style={{ fontSize: "0.7em" }}>せ</span>
+            <span style={{ fontSize: "0.7em" }}>る</span>
+            <span style={{ fontSize: "1em" }}>写</span>
+            <span style={{ fontSize: "1em" }}>真</span>
+          </span>
+          {/* Blue glitch layer */}
+          <span aria-hidden className="glitch-layer glitch-blue">
+            <span style={{ fontSize: "1em" }}>詐</span>
+            <span style={{ fontSize: "1em" }}>欺</span>
+            <span style={{ fontSize: "1em" }}>師</span>
+            <span style={{ fontSize: "0.7em" }}>が</span>
+            <span style={{ fontSize: "0.7em" }}>よ</span>
+            <span style={{ fontSize: "0.7em" }}>く</span>
+            <span style={{ fontSize: "1em" }}>載</span>
+            <span style={{ fontSize: "0.7em" }}>せ</span>
+            <span style={{ fontSize: "0.7em" }}>る</span>
+            <span style={{ fontSize: "1em" }}>写</span>
+            <span style={{ fontSize: "1em" }}>真</span>
+          </span>
+          {/* Main text layer */}
           <span data-char style={{ fontSize: "1em" }}>詐</span>
           <span data-char style={{ fontSize: "1em" }}>欺</span>
           <span data-char style={{ fontSize: "1em" }}>師</span>
