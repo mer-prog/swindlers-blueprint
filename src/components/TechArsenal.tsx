@@ -79,7 +79,7 @@ export default function TechArsenal() {
           {/* Terminal content */}
           <div className="p-6 md:p-8">
             <p
-              className="text-sm mb-8"
+              className="text-sm mb-2"
               style={{
                 color: "var(--green)",
                 fontFamily: "var(--font-jetbrains), monospace",
@@ -87,17 +87,63 @@ export default function TechArsenal() {
             >
               $ scanning capabilities... // 能力スキャン中...
             </p>
+            <div className="mb-8">
+              <p
+                className="text-sm"
+                style={{
+                  color: "rgba(0,255,65,0.5)",
+                  fontFamily: "var(--font-jetbrains), monospace",
+                  fontSize: "0.8rem",
+                }}
+              >
+                &gt; OPERATIVE SKILL ASSESSMENT
+              </p>
+              <p
+                style={{
+                  color: "var(--muted)",
+                  fontFamily: "var(--font-noto), sans-serif",
+                  fontSize: "0.8rem",
+                }}
+              >
+                &gt; 工作員スキル評価レポート
+              </p>
+            </div>
 
             {Object.entries(skills).map(([category, categorySkills]) => (
               <div key={category} className="mb-8 last:mb-0">
                 <div
-                  className="text-xs mb-4 tracking-wider"
+                  className="text-xs mb-1 tracking-wider"
                   style={{
                     color: "var(--muted)",
                     fontFamily: "var(--font-jetbrains), monospace",
                   }}
                 >
                   ┌─ {category} ─────────────────────┐
+                </div>
+                <div className="mb-4">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-noto), sans-serif",
+                      fontSize: "0.85rem",
+                      color: "var(--muted)",
+                    }}
+                  >
+                    {category === "FRONTEND" && "ユーザーが触れるすべてを設計・構築する"}
+                    {category === "BACKEND" && "データとロジックの基盤を構築する"}
+                    {category === "TOOLS" && "開発を加速させる武器"}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-jetbrains), monospace",
+                      fontSize: "0.75rem",
+                      color: "rgba(102,102,102,0.6)",
+                      marginTop: "0.25rem",
+                    }}
+                  >
+                    {category === "FRONTEND" && "Design & build everything the user touches"}
+                    {category === "BACKEND" && "Build the foundation of data & logic"}
+                    {category === "TOOLS" && "Weapons that accelerate development"}
+                  </p>
                 </div>
                 {categorySkills.map((skill) => {
                   const idx = skillIndex++;
