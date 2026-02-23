@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,11 +8,17 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Hero() {
+interface HeroProps {
+  booted?: boolean;
+}
+
+export default function Hero({ booted }: HeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
+  const noteRef = useRef<HTMLParagraphElement>(null);
+  const captionRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -82,9 +88,51 @@ export default function Hero() {
           scrub: 1,
         },
       });
+
+      // Note delayed fade in
+      gsap.fromTo(
+        noteRef.current,
+        { opacity: 0 },
+        { opacity: 0.3, duration: 1, delay: 2, ease: "power2.out" }
+      );
+
+      // Note fade on scroll
+      gsap.to(noteRef.current, {
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "10% top",
+          end: "30% top",
+          scrub: 1,
+        },
+      });
+
+      // Caption fade on scroll
+      gsap.to(captionRef.current, {
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "10% top",
+          end: "30% top",
+          scrub: 1,
+        },
+      });
     },
     { scope: sectionRef }
   );
+
+  // Caption fade in after boot completes
+  useEffect(() => {
+    if (booted && captionRef.current) {
+      gsap.fromTo(
+        captionRef.current,
+        { opacity: 0 },
+        { opacity: 0.4, duration: 0.8, delay: 1, ease: "power2.out" }
+      );
+    }
+  }, [booted]);
 
   return (
     <section
@@ -135,6 +183,25 @@ export default function Hero() {
         />
       </div>
 
+      {/* Photo caption */}
+      <div
+        ref={captionRef}
+        className="absolute z-20"
+        style={{
+          top: "1.5rem",
+          right: "2rem",
+          fontFamily: "var(--font-noto), sans-serif",
+          fontSize: "clamp(0.7rem, 1.2vw, 0.9rem)",
+          color: "rgba(255, 255, 255, 0.4)",
+          background: "rgba(0, 0, 0, 0.3)",
+          padding: "0.4rem 0.8rem",
+          borderRadius: "4px",
+          opacity: 0,
+        }}
+      >
+        📸 詐欺師がよく載せる写真
+      </div>
+
       {/* Center content */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
         <h1
@@ -161,6 +228,19 @@ export default function Hero() {
           }}
         >
           The Swindler&apos;s Blueprint
+        </p>
+        <p
+          ref={noteRef}
+          className="mt-4"
+          style={{
+            fontFamily: "var(--font-noto), sans-serif",
+            fontSize: "clamp(0.6rem, 1vw, 0.8rem)",
+            color: "rgba(255, 255, 255, 0.3)",
+            letterSpacing: "0.1em",
+            opacity: 0,
+          }}
+        >
+          ※ジョークですよ。
         </p>
       </div>
 
