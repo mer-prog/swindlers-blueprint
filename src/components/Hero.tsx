@@ -86,16 +86,20 @@ export default function Hero({ booted }: HeroProps) {
       );
 
       // Note fade on scroll
-      gsap.to(noteRef.current, {
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "10% top",
-          end: "30% top",
-          scrub: 1,
-        },
-      });
+      gsap.fromTo(
+        noteRef.current,
+        { opacity: 0.5 },
+        {
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "10% top",
+            end: "30% top",
+            scrub: 1,
+          },
+        }
+      );
 
     },
     { scope: sectionRef }
