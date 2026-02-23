@@ -156,8 +156,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </span>
             ))}
           </div>
-          <div>
-            <span style={{ color: "var(--muted)" }}>DESC: </span>
+          <div className="flex">
+            <span className="shrink-0" style={{ color: "var(--muted)" }}>DESC:&nbsp;</span>
             <span
               style={{
                 color: "var(--text)",
