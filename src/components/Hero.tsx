@@ -116,19 +116,21 @@ export default function Hero() {
           className="absolute inset-0 z-[5]"
           style={{
             background:
-              "linear-gradient(to bottom, transparent 0%, transparent 60%, #0a0a0a 100%)",
+              "linear-gradient(to bottom, transparent 0%, transparent 40%, rgba(10,10,10,0.8) 70%, #0a0a0a 100%)",
           }}
         />
         {/* License plate blur */}
         <div
           className="absolute z-10"
           style={{
-            bottom: "3%",
-            left: "3%",
-            width: "17%",
-            height: "6%",
+            position: "absolute",
+            bottom: "2%",
+            left: "1%",
+            width: "20%",
+            height: "7%",
             backdropFilter: "blur(25px)",
             WebkitBackdropFilter: "blur(25px)",
+            background: "rgba(0,0,0,0.3)",
           }}
         />
       </div>
