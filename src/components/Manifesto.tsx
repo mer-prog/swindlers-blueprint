@@ -8,7 +8,16 @@ import MatrixRain from "./MatrixRain";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const LINES = ["私のことは覚えなくていい。", "", "何ができるかだけ知ってくれ。"];
+interface ManifestoLine {
+  ja: string;
+  en: string;
+}
+
+const LINES: (ManifestoLine | null)[] = [
+  { ja: "私のことは覚えなくていい。", en: "You don't need to remember me." },
+  null, // spacer
+  { ja: "何ができるかだけ知ってくれ。", en: "Just know what I can do." },
+];
 
 export default function Manifesto() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -25,30 +34,53 @@ export default function Manifesto() {
       container.innerHTML = "";
 
       LINES.forEach((line, lineIdx) => {
-        if (line === "") {
+        if (line === null) {
           const br = document.createElement("div");
           br.style.height = "1.5em";
           container.appendChild(br);
           return;
         }
 
-        const lineDiv = document.createElement("div");
-        lineDiv.style.overflow = "hidden";
+        // Japanese line
+        const jaDiv = document.createElement("div");
+        jaDiv.style.overflow = "hidden";
 
-        line.split("").forEach((char) => {
+        line.ja.split("").forEach((char) => {
           const span = document.createElement("span");
           span.textContent = char;
           span.style.display = "inline-block";
           span.style.opacity = "0";
           span.style.transform = "translateY(20px)";
           span.style.willChange = "opacity, transform";
-          lineDiv.appendChild(span);
+          jaDiv.appendChild(span);
           allChars.push(span);
         });
 
-        container.appendChild(lineDiv);
+        container.appendChild(jaDiv);
 
-        if (lineIdx < LINES.length - 1 && LINES[lineIdx + 1] !== "") {
+        // English line
+        const enDiv = document.createElement("div");
+        enDiv.style.overflow = "hidden";
+        enDiv.style.marginTop = "0.5rem";
+
+        line.en.split("").forEach((char) => {
+          const span = document.createElement("span");
+          span.textContent = char;
+          span.style.display = "inline-block";
+          span.style.opacity = "0";
+          span.style.transform = "translateY(20px)";
+          span.style.willChange = "opacity, transform";
+          span.style.fontFamily = "var(--font-jetbrains), monospace";
+          span.style.fontSize = "clamp(0.8rem, 1.5vw, 1.2rem)";
+          span.style.color = "var(--muted)";
+          span.style.fontWeight = "400";
+          enDiv.appendChild(span);
+          allChars.push(span);
+        });
+
+        container.appendChild(enDiv);
+
+        if (lineIdx < LINES.length - 1 && LINES[lineIdx + 1] !== null) {
           const spacer = document.createElement("div");
           spacer.style.height = "0.5em";
           container.appendChild(spacer);
@@ -108,7 +140,7 @@ export default function Manifesto() {
     <section
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden"
-      style={{ background: "var(--bg-primary)" }}
+      style={{ background: "var(--bg-primary)", paddingTop: 0 }}
     >
       <MatrixRain opacity={0.1} />
 
