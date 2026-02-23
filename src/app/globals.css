@@ -70,19 +70,19 @@ body {
   }
   5% {
     clip-path: inset(20% 0 60% 0);
-    transform: translate(-5px, 2px);
+    transform: translate(-2px, 1px);
   }
   10% {
     clip-path: inset(50% 0 30% 0);
-    transform: translate(5px, -2px);
+    transform: translate(2px, -1px);
   }
   15% {
     clip-path: inset(10% 0 70% 0);
-    transform: translate(-3px, 1px);
+    transform: translate(-1px, 0.5px);
   }
   20% {
     clip-path: inset(80% 0 5% 0);
-    transform: translate(3px, -1px);
+    transform: translate(1px, -0.5px);
   }
   25%, 100% {
     clip-path: inset(0 0 0 0);
@@ -97,19 +97,19 @@ body {
   }
   5% {
     clip-path: inset(60% 0 10% 0);
-    transform: translate(5px, -2px);
+    transform: translate(2px, -1px);
   }
   10% {
     clip-path: inset(30% 0 40% 0);
-    transform: translate(-5px, 2px);
+    transform: translate(-2px, 1px);
   }
   15% {
     clip-path: inset(70% 0 10% 0);
-    transform: translate(3px, -1px);
+    transform: translate(1px, -0.5px);
   }
   20% {
     clip-path: inset(5% 0 80% 0);
-    transform: translate(-3px, 1px);
+    transform: translate(-1px, 0.5px);
   }
   25%, 100% {
     clip-path: inset(0 0 0 0);
