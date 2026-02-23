@@ -63,11 +63,6 @@ export default function Hero({ booted }: HeroProps) {
             end: "60% top",
             scrub: 1,
           },
-          onComplete: () => {
-            chars.forEach((c) =>
-              gsap.set(c, { clearProps: "all" })
-            );
-          },
         });
       }
 
