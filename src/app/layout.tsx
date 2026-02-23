@@ -3,17 +3,17 @@ import "./globals.css";
 import ScanlineOverlay from "@/components/ScanlineOverlay";
 
 export const metadata: Metadata = {
-  title: "詐欺師の構図 — The Swindler's Blueprint",
+  title: "詐欺師がよく載せる写真 — Photos Scammers Love to Post",
   description: "私のことは覚えなくていい。何ができるかだけ知ってくれ。",
   openGraph: {
-    title: "詐欺師の構図 — The Swindler's Blueprint",
+    title: "詐欺師がよく載せる写真 — Photos Scammers Love to Post",
     description: "私のことは覚えなくていい。何ができるかだけ知ってくれ。",
     images: ["/images/og-image.png"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "詐欺師の構図 — The Swindler's Blueprint",
+    title: "詐欺師がよく載せる写真 — Photos Scammers Love to Post",
     description: "私のことは覚えなくていい。何ができるかだけ知ってくれ。",
     images: ["/images/og-image.png"],
   },
