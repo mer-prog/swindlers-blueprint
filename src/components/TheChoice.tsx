@@ -106,16 +106,17 @@ export default function TheChoice() {
             whileHover={{ scale: 1.1 }}
             onClick={() => setShowEnd(true)}
           >
-            <div className="animate-float">
+            <div className="animate-float overflow-hidden">
               <Image
                 src="/images/pill-red.png"
                 alt="Red Pill"
                 width={250}
                 height={250}
                 unoptimized
-                className="max-w-[200px] md:max-w-[250px]"
+                className="max-w-[200px] md:max-w-[250px] scale-110"
                 style={{
                   background: "black",
+                  objectFit: "cover",
                   filter:
                     "drop-shadow(0 0 20px rgba(255,0,64,0.4))",
                 }}
@@ -149,16 +150,17 @@ export default function TheChoice() {
             whileHover={{ scale: 1.1 }}
             onClick={() => setShowContact(true)}
           >
-            <div className="animate-float" style={{ animationDelay: "1.5s" }}>
+            <div className="animate-float overflow-hidden" style={{ animationDelay: "1.5s" }}>
               <Image
                 src="/images/pill-blue.png"
                 alt="Blue Pill"
                 width={250}
                 height={250}
                 unoptimized
-                className="max-w-[200px] md:max-w-[250px]"
+                className="max-w-[200px] md:max-w-[250px] scale-110"
                 style={{
                   background: "black",
+                  objectFit: "cover",
                   filter:
                     "drop-shadow(0 0 20px rgba(0,168,255,0.4))",
                 }}
