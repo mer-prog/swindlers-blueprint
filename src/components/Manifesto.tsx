@@ -47,7 +47,7 @@ export default function Manifesto() {
 
         line.ja.split("").forEach((char) => {
           const span = document.createElement("span");
-          span.textContent = char;
+          span.innerHTML = char === " " ? "&nbsp;" : char;
           span.style.display = "inline-block";
           span.style.opacity = "0";
           span.style.transform = "translateY(20px)";
@@ -65,7 +65,7 @@ export default function Manifesto() {
 
         line.en.split("").forEach((char) => {
           const span = document.createElement("span");
-          span.textContent = char;
+          span.innerHTML = char === " " ? "&nbsp;" : char;
           span.style.display = "inline-block";
           span.style.opacity = "0";
           span.style.transform = "translateY(20px)";
