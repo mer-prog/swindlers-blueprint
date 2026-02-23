@@ -47,8 +47,14 @@ export default function Manifesto() {
 
         line.ja.split("").forEach((char) => {
           const span = document.createElement("span");
-          span.innerHTML = char === " " ? "&nbsp;" : char;
-          span.style.display = "inline-block";
+          if (char === " ") {
+            span.textContent = "\u00a0";
+            span.style.display = "inline-block";
+            span.style.minWidth = "0.3em";
+          } else {
+            span.textContent = char;
+            span.style.display = "inline-block";
+          }
           span.style.opacity = "0";
           span.style.transform = "translateY(20px)";
           span.style.willChange = "opacity, transform";
@@ -65,8 +71,14 @@ export default function Manifesto() {
 
         line.en.split("").forEach((char) => {
           const span = document.createElement("span");
-          span.innerHTML = char === " " ? "&nbsp;" : char;
-          span.style.display = "inline-block";
+          if (char === " ") {
+            span.textContent = "\u00a0";
+            span.style.display = "inline-block";
+            span.style.minWidth = "0.3em";
+          } else {
+            span.textContent = char;
+            span.style.display = "inline-block";
+          }
           span.style.opacity = "0";
           span.style.transform = "translateY(20px)";
           span.style.willChange = "opacity, transform";
