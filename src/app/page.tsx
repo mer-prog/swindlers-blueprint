@@ -54,7 +54,7 @@ export default function Home() {
       {!booted && <BootSequence onComplete={() => setBooted(true)} />}
 
       <main>
-        <Hero />
+        <Hero booted={booted} />
         <Manifesto />
         <Dossier />
         <TechArsenal />
