@@ -90,6 +90,16 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               >
                 {headerText}
               </span>
+              <p
+                className="mt-2"
+                style={{
+                  fontSize: "0.85rem",
+                  color: "var(--muted)",
+                  fontFamily: "var(--font-noto), sans-serif",
+                }}
+              >
+                安全な通信回線が確立されました
+              </p>
             </div>
 
             {/* Contact info */}
@@ -122,6 +132,15 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               }}
             >
               お仕事のご相談、お待ちしています。
+            </p>
+            <p
+              className="mt-1 text-sm"
+              style={{
+                color: "var(--muted)",
+                fontFamily: "var(--font-jetbrains), monospace",
+              }}
+            >
+              Ready to build something extraordinary.
             </p>
 
             {/* Close channel button */}

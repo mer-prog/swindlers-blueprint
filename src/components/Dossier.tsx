@@ -59,6 +59,16 @@ export default function Dossier() {
           >
             CLASSIFIED DOSSIER — PROJECT FILES
           </h2>
+          <p
+            className="mt-3"
+            style={{
+              fontFamily: "var(--font-noto), sans-serif",
+              fontSize: "0.8rem",
+              color: "var(--muted)",
+            }}
+          >
+            機密文書 — プロジェクトファイル
+          </p>
         </div>
 
         {/* Grid */}

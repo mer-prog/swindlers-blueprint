@@ -102,7 +102,7 @@ export default function Hero() {
           sizes="100vw"
         />
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/70" />
         {/* Noise texture */}
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -111,16 +111,24 @@ export default function Hero() {
               "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
           }}
         />
+        {/* Bottom gradient fade to #0a0a0a */}
+        <div
+          className="absolute inset-0 z-[5]"
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent 0%, transparent 60%, #0a0a0a 100%)",
+          }}
+        />
         {/* License plate blur */}
         <div
           className="absolute z-10"
           style={{
-            bottom: "15%",
-            left: "5%",
-            width: "15%",
-            height: "8%",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
+            bottom: "3%",
+            left: "3%",
+            width: "17%",
+            height: "6%",
+            backdropFilter: "blur(25px)",
+            WebkitBackdropFilter: "blur(25px)",
           }}
         />
       </div>

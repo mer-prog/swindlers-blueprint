@@ -4,6 +4,12 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MatrixRain from "./MatrixRain";
 
+const TERMINATED_TEXT = "CONNECTION TERMINATED";
+// Deterministic pseudo-random rotations for each character
+const CHAR_ROTATIONS = TERMINATED_TEXT.split("").map(
+  (_, i) => ((i * 7 + 13) % 90) - 45
+);
+
 interface TheEndProps {
   isOpen: boolean;
   onClose: () => void;
@@ -20,8 +26,8 @@ export default function TheEnd({ isOpen, onClose }: TheEndProps) {
 
   useEffect(() => {
     if (!isOpen) {
-      setPhase(0);
-      return;
+      const t0 = setTimeout(() => setPhase(0), 0);
+      return () => clearTimeout(t0);
     }
 
     // Phase 0: flash + glitch (0-1s)
@@ -85,12 +91,7 @@ export default function TheEnd({ isOpen, onClose }: TheEndProps) {
             {/* CONNECTION TERMINATED */}
             <AnimatePresence>
               {(phase === 1 || phase === 2) && (
-                <motion.h2
-                  className="text-2xl md:text-5xl tracking-wider uppercase"
-                  style={{
-                    fontFamily: "var(--font-orbitron), monospace",
-                    color: "var(--red)",
-                  }}
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{
@@ -98,29 +99,47 @@ export default function TheEnd({ isOpen, onClose }: TheEndProps) {
                     transition: { duration: 1 },
                   }}
                 >
-                  {"CONNECTION TERMINATED".split("").map((char, i) => (
-                    <motion.span
-                      key={i}
-                      style={{ display: "inline-block" }}
-                      animate={
-                        phase === 2
-                          ? {
-                              y: [0, -20, 100],
-                              opacity: [1, 1, 0],
-                              rotate: [0, 0, Math.random() * 90 - 45],
-                            }
-                          : {}
-                      }
-                      transition={
-                        phase === 2
-                          ? { duration: 0.8, delay: i * 0.05 }
-                          : {}
-                      }
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </motion.span>
-                  ))}
-                </motion.h2>
+                  <motion.h2
+                    className="text-2xl md:text-5xl tracking-wider uppercase"
+                    style={{
+                      fontFamily: "var(--font-orbitron), monospace",
+                      color: "var(--red)",
+                    }}
+                  >
+                    {TERMINATED_TEXT.split("").map((char, i) => (
+                      <motion.span
+                        key={i}
+                        style={{ display: "inline-block" }}
+                        animate={
+                          phase === 2
+                            ? {
+                                y: [0, -20, 100],
+                                opacity: [1, 1, 0],
+                                rotate: [0, 0, CHAR_ROTATIONS[i]],
+                              }
+                            : {}
+                        }
+                        transition={
+                          phase === 2
+                            ? { duration: 0.8, delay: i * 0.05 }
+                            : {}
+                        }
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </motion.span>
+                    ))}
+                  </motion.h2>
+                  <p
+                    className="mt-3"
+                    style={{
+                      fontSize: "1rem",
+                      color: "rgba(255,0,64,0.6)",
+                      fontFamily: "var(--font-noto), sans-serif",
+                    }}
+                  >
+                    接続が切断されました
+                  </p>
+                </motion.div>
               )}
             </AnimatePresence>
 
@@ -141,6 +160,16 @@ export default function TheEnd({ isOpen, onClose }: TheEndProps) {
                   >
                     THE END.
                   </h2>
+                  <p
+                    className="mt-4"
+                    style={{
+                      fontFamily: "var(--font-noto), sans-serif",
+                      fontSize: "1.5rem",
+                      color: "white",
+                    }}
+                  >
+                    終幕
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -171,7 +200,7 @@ export default function TheEnd({ isOpen, onClose }: TheEndProps) {
                       e.currentTarget.style.color = "var(--green)";
                     }}
                   >
-                    もう一度？
+                    もう一度？ // Try Again?
                   </button>
                 </motion.div>
               )}

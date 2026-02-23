@@ -75,16 +75,28 @@ export default function TheChoice() {
         style={{ background: "black" }}
       >
         {/* Question text */}
-        <p
-          className="choice-question text-center mb-16 md:mb-24"
-          style={{
-            fontFamily: "var(--font-noto), sans-serif",
-            fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-            color: "var(--text)",
-          }}
-        >
-          あなたはどちらを選ぶ？
-        </p>
+        <div className="text-center mb-16 md:mb-24">
+          <p
+            className="choice-question"
+            style={{
+              fontFamily: "var(--font-noto), sans-serif",
+              fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
+              color: "var(--text)",
+            }}
+          >
+            あなたはどちらを選ぶ？
+          </p>
+          <p
+            className="mt-3"
+            style={{
+              fontFamily: "var(--font-jetbrains), monospace",
+              fontSize: "0.9rem",
+              color: "var(--muted)",
+            }}
+          >
+            Which pill will you take?
+          </p>
+        </div>
 
         {/* Pills */}
         <div className="flex flex-col md:flex-row items-center gap-16 md:gap-32">
@@ -107,15 +119,26 @@ export default function TheChoice() {
                 }}
               />
             </div>
-            <span
-              className="text-lg tracking-widest"
-              style={{
-                fontFamily: "var(--font-orbitron), monospace",
-                color: "var(--red)",
-              }}
-            >
-              THE END
-            </span>
+            <div className="flex flex-col items-center gap-1">
+              <span
+                style={{
+                  fontFamily: "var(--font-noto), sans-serif",
+                  fontSize: "0.85rem",
+                  color: "rgba(255,0,64,0.7)",
+                }}
+              >
+                終わりだ
+              </span>
+              <span
+                className="text-lg tracking-widest"
+                style={{
+                  fontFamily: "var(--font-orbitron), monospace",
+                  color: "var(--red)",
+                }}
+              >
+                THE END
+              </span>
+            </div>
           </motion.div>
 
           {/* Blue pill */}
@@ -137,15 +160,26 @@ export default function TheChoice() {
                 }}
               />
             </div>
-            <span
-              className="text-lg tracking-widest"
-              style={{
-                fontFamily: "var(--font-orbitron), monospace",
-                color: "var(--blue)",
-              }}
-            >
-              CONTACT
-            </span>
+            <div className="flex flex-col items-center gap-1">
+              <span
+                style={{
+                  fontFamily: "var(--font-noto), sans-serif",
+                  fontSize: "0.85rem",
+                  color: "rgba(0,168,255,0.7)",
+                }}
+              >
+                繋がろう
+              </span>
+              <span
+                className="text-lg tracking-widest"
+                style={{
+                  fontFamily: "var(--font-orbitron), monospace",
+                  color: "var(--blue)",
+                }}
+              >
+                CONTACT
+              </span>
+            </div>
           </motion.div>
         </div>
       </section>

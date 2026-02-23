@@ -85,7 +85,7 @@ export default function TechArsenal() {
                 fontFamily: "var(--font-jetbrains), monospace",
               }}
             >
-              $ scanning capabilities...
+              $ scanning capabilities... // 能力スキャン中...
             </p>
 
             {Object.entries(skills).map(([category, categorySkills]) => (

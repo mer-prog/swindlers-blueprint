@@ -34,9 +34,11 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
     if (isComplete) return;
 
     if (currentLineIndex >= BOOT_LINES.length) {
-      setIsFlashing(true);
-      setTimeout(() => onComplete(), 500);
-      return;
+      const t = setTimeout(() => {
+        setIsFlashing(true);
+        setTimeout(() => onComplete(), 500);
+      }, 0);
+      return () => clearTimeout(t);
     }
 
     const fullLine = BOOT_LINES[currentLineIndex];
@@ -59,7 +61,20 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
   }, [currentLineIndex, isComplete, onComplete]);
 
   return (
-    <div className="fixed inset-0 z-[10002] flex items-center justify-center bg-black boot-scanline">
+    <div
+      className="fixed inset-0 z-[10002] flex items-center justify-center boot-scanline"
+      style={{ background: "#0a0a0a" }}
+    >
+      {/* Static scanline overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,65,0.03) 2px, rgba(0,255,65,0.03) 4px)",
+          zIndex: 1,
+        }}
+      />
+
       {isFlashing && (
         <div
           className="absolute inset-0 bg-white z-10"
@@ -68,14 +83,14 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
       )}
 
       <div
-        className="max-w-2xl w-full px-8"
+        className="relative z-[2] max-w-2xl w-full px-8"
         style={{ fontFamily: "var(--font-jetbrains), monospace" }}
       >
         {lines.map((line, i) => (
           <div
             key={i}
             className="text-sm md:text-base mb-2"
-            style={{ color: "var(--green)" }}
+            style={{ color: "#00ff41" }}
           >
             {line}
           </div>
@@ -83,7 +98,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
         {currentLineText && (
           <div
             className="text-sm md:text-base mb-2 typewriter-cursor"
-            style={{ color: "var(--green)" }}
+            style={{ color: "#00ff41" }}
           >
             {currentLineText}
           </div>
@@ -92,15 +107,15 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
 
       <button
         onClick={skip}
-        className="absolute bottom-8 right-8 text-sm px-4 py-2 border transition-colors"
+        className="absolute bottom-8 right-8 text-sm px-4 py-2 border transition-colors z-[2]"
         style={{
           color: "var(--muted)",
           borderColor: "var(--muted)",
           fontFamily: "var(--font-jetbrains), monospace",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.color = "var(--green)";
-          e.currentTarget.style.borderColor = "var(--green)";
+          e.currentTarget.style.color = "#00ff41";
+          e.currentTarget.style.borderColor = "#00ff41";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.color = "var(--muted)";
