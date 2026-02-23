@@ -3,6 +3,7 @@ import "./globals.css";
 import ScanlineOverlay from "@/components/ScanlineOverlay";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://swindlers-blueprint.vercel.app"),
   title: "詐欺師がよく載せる写真 — Photos Scammers Love to Post",
   description: "私のことは覚えなくていい。何ができるかだけ知ってくれ。",
   openGraph: {
