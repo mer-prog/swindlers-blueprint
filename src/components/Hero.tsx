@@ -93,7 +93,7 @@ export default function Hero({ booted }: HeroProps) {
       gsap.fromTo(
         noteRef.current,
         { opacity: 0 },
-        { opacity: 0.3, duration: 1, delay: 2, ease: "power2.out" }
+        { opacity: 0.5, duration: 1, delay: 2, ease: "power2.out" }
       );
 
       // Note fade on scroll
@@ -191,9 +191,9 @@ export default function Hero({ booted }: HeroProps) {
           top: "1.5rem",
           right: "2rem",
           fontFamily: "var(--font-noto), sans-serif",
-          fontSize: "clamp(0.7rem, 1.2vw, 0.9rem)",
-          color: "rgba(255, 255, 255, 0.4)",
-          background: "rgba(0, 0, 0, 0.3)",
+          fontSize: "clamp(0.75rem, 1.3vw, 1rem)",
+          color: "rgba(255, 255, 255, 0.7)",
+          background: "rgba(0, 0, 0, 0.5)",
           padding: "0.4rem 0.8rem",
           borderRadius: "4px",
           opacity: 0,
@@ -235,7 +235,7 @@ export default function Hero({ booted }: HeroProps) {
           style={{
             fontFamily: "var(--font-noto), sans-serif",
             fontSize: "clamp(0.6rem, 1vw, 0.8rem)",
-            color: "rgba(255, 255, 255, 0.3)",
+            color: "rgba(255, 255, 255, 0.5)",
             letterSpacing: "0.1em",
             opacity: 0,
           }}
