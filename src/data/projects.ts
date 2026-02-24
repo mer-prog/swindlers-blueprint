@@ -62,11 +62,11 @@ export const projects: Project[] = [
   {
     id: "006",
     title: "QR Ordering System — レトロ喫茶モバイルオーダー",
-    status: "IN DEVELOPMENT",
+    status: "DEPLOYED",
     stack: ["Vanilla JS", "Firebase Firestore", "Tailwind CSS"],
     description:
       "QRコードでセルフオーダー。Firestoreリアルタイム同期でキッチン即時反映。昭和レトロUIデザイン。",
     image: "/images/qr-ordering.png",
-    demoUrl: "#",
+    demoUrl: "https://aibuzz-retro-cafe.web.app",
   },
 ];
