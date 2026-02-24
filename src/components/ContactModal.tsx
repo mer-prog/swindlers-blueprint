@@ -8,6 +8,9 @@ interface ContactModalProps {
   onClose: () => void;
 }
 
+const CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "your-email@example.com";
+
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [headerText, setHeaderText] = useState("");
   const fullHeader = "SECURE CHANNEL ESTABLISHED";
@@ -107,7 +110,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               <div>
                 <span style={{ color: "var(--muted)" }}>EMAIL: </span>
                 <a
-                  href="mailto:mercedesamg19990222@gmail.com"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="transition-colors"
                   style={{ color: "var(--green)" }}
                   onMouseEnter={(e) =>
@@ -118,7 +121,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     (e.currentTarget.style.textShadow = "none")
                   }
                 >
-                  mercedesamg19990222@gmail.com
+                  {CONTACT_EMAIL}
                 </a>
               </div>
             </div>

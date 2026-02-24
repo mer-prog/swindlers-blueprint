@@ -172,6 +172,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* Link */}
         <a
           href={project.demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-block mt-4 text-sm tracking-wider transition-colors"
           style={{ color: "var(--green)" }}
           onMouseEnter={(e) =>
