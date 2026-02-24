@@ -161,10 +161,11 @@ export default function Hero({ booted }: HeroProps) {
           className="glitch-text-container font-bold text-white"
           style={{
             fontFamily: "var(--font-orbitron), var(--font-noto), sans-serif",
-            fontSize: "clamp(3rem, 10vw, 12rem)",
+            fontSize: "clamp(2rem, 8vw, 10rem)",
             textShadow: "0 0 20px rgba(0,255,65,0.5), 0 0 40px rgba(0,255,65,0.3)",
             lineHeight: 1.1,
             position: "relative",
+            whiteSpace: "nowrap",
           }}
         >
           {/* Red glitch layer */}
