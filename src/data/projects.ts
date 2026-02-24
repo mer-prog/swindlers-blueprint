@@ -47,7 +47,7 @@ export const projects: Project[] = [
     description:
       "顧客管理・請求・アナリティクス・AIアシスタントを備えたB2B SaaS管理ダッシュボード。",
     image: null,
-    demoUrl: "https://nexus-ai-five.vercel.app",
+    demoUrl: "https://nexus-ai-tau-one.vercel.app",
   },
   {
     id: "005",
