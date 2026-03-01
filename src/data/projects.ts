@@ -21,6 +21,16 @@ export const projects: Project[] = [
   },
   {
     id: "002",
+    title: "BOT Shield — Multi-Layer Bot Defense",
+    status: "DEPLOYED",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Cloudflare Turnstile", "FingerprintJS", "Recharts"],
+    description:
+      "ECサイト向け多層BOT対策システム。マウス軌跡・キーボードタイミング・滞在時間をリアルタイム分析し、5層防御でBOT購入をブロック。Cloudflare Turnstile + FingerprintJS + 独自行動分析エンジンを統合。¥0コストで構築。",
+    image: "/images/bot-shield.png",
+    demoUrl: "https://bot-shield-theta.vercel.app",
+  },
+  {
+    id: "003",
     title: "LUXE Store — Stripe EC Platform",
     status: "DEPLOYED",
     stack: ["Next.js 15", "TypeScript", "Prisma", "PostgreSQL", "Stripe", "Resend"],
@@ -30,7 +40,7 @@ export const projects: Project[] = [
     demoUrl: "https://luxe-store-ruby.vercel.app",
   },
   {
-    id: "003",
+    id: "004",
     title: "BookFlow — AI Booking Platform",
     status: "DEPLOYED",
     stack: ["Next.js 16", "TypeScript", "Prisma", "PostgreSQL", "Recharts"],
@@ -40,7 +50,7 @@ export const projects: Project[] = [
     demoUrl: "https://bookflow-five.vercel.app",
   },
   {
-    id: "004",
+    id: "005",
     title: "Nexus AI — SaaS Dashboard",
     status: "DEPLOYED",
     stack: ["Next.js 15", "TypeScript", "Prisma", "PostgreSQL", "NextAuth.js", "shadcn/ui"],
@@ -50,7 +60,7 @@ export const projects: Project[] = [
     demoUrl: "https://nexus-ai-tau-one.vercel.app",
   },
   {
-    id: "005",
+    id: "006",
     title: "PulseHabit — Offline-First Habit Tracker",
     status: "DEPLOYED",
     stack: ["React Native", "Expo SDK 54", "TypeScript", "SQLite", "Supabase"],
@@ -60,7 +70,7 @@ export const projects: Project[] = [
     demoUrl: "https://mer-prog.github.io/pulse-habit/docs/showcase.html",
   },
   {
-    id: "006",
+    id: "007",
     title: "QR Ordering System — レトロ喫茶モバイルオーダー",
     status: "DEPLOYED",
     stack: ["Vanilla JS", "Firebase Firestore", "Tailwind CSS"],
