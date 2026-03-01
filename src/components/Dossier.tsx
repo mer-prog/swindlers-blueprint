@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -12,6 +12,26 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Dossier() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+
+  // Equalize all card heights to the tallest card
+  useEffect(() => {
+    const cards = cardsRef.current;
+    if (!cards) return;
+
+    const equalize = () => {
+      const cardEls = cards.querySelectorAll<HTMLElement>(".project-card");
+      cardEls.forEach((el) => (el.style.minHeight = ""));
+      let maxH = 0;
+      cardEls.forEach((el) => {
+        maxH = Math.max(maxH, el.offsetHeight);
+      });
+      cardEls.forEach((el) => (el.style.minHeight = `${maxH}px`));
+    };
+
+    equalize();
+    window.addEventListener("resize", equalize);
+    return () => window.removeEventListener("resize", equalize);
+  }, []);
 
   useGSAP(
     () => {
