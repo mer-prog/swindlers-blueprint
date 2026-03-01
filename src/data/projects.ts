@@ -23,9 +23,9 @@ export const projects: Project[] = [
     id: "002",
     title: "BOT Shield — Multi-Layer Bot Defense",
     status: "DEPLOYED",
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Cloudflare Turnstile", "FingerprintJS", "Recharts"],
+    stack: ["Next.js", "TypeScript", "PostgreSQL", "Cloudflare Turnstile", "FingerprintJS"],
     description:
-      "ECサイト向け多層BOT対策システム。マウス軌跡・キーボードタイミング・滞在時間をリアルタイム分析し、5層防御でBOT購入をブロック。Cloudflare Turnstile + FingerprintJS + 独自行動分析エンジンを統合。¥0コストで構築。",
+      "EC向け5層BOT防御システム。マウス軌跡・キー入力・滞在時間のリアルタイム行動分析でBOT購入をブロック。",
     image: "/images/bot-shield.png",
     demoUrl: "https://bot-shield-theta.vercel.app",
   },
